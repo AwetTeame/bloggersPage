@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+       
+    <meta charset="UTF-8">
+       
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"        
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+       
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blog</title>
+</head>
+
+<body>
+    <header class="container-fluid bg-light text-center h-sm-130">
+        <h1>Articles' Page</h1>
+    </header>
+
+    <main class="container-fluid ">
+        <div class="row justify-content-sm-center">
+            <div class="col-md-5  text-justify mr-4">
+
+                <%- article.sanitizedHTML %>
+            </div>
+            <div class="col-md-4 p-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Comments</h4>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group">
+                            <% comments.forEach(comment=>{ %>
+                                <li class="list-group-item">
+                                    <%= comment.comment %>
+                                </li>
+                                <% }) %>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <form action="/comment/<%= article.slug %>" for="newComment" method="POST">
+                            <input type="text" class="form-control" name="newComment" id="newComment"
+                                placeholder="Enter your comment here">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container-fluid">
+        <p class="text-center">Copyright &copy; 2023 My Blog</p>
+    </footer>
+
+</body>
+
+</html>
